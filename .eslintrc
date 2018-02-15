@@ -3,6 +3,9 @@
     "eslint:recommended",
     "airbnb-base"
   ],
+  "rules": {
+    "class-methods-use-this": 0
+  },
   "globals": {
     "isNaN": true
   }

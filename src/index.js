@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import debugModule from 'debug';
 import http from 'http';
 import app from './app';
