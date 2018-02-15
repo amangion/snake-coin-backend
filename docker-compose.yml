@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  snake-coin:
+    build:
+      context: .
+    volumes:
+      - .:/app
+      - /app/node_modules/
+
+    ports:
+      - "4000:4000"
+
+    env_file:
+      - .env
+
+    environment:
+      - MONGO_HOST=mongodb://mongo/snake-coin
+      - DEBUG=snake-coin:*
+
+    links:
+      - mongo
+  mongo:
+    image: "mongo:3.4.2"
+    ports:
+      - "27017:27017"
