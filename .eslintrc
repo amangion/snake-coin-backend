@@ -2,5 +2,8 @@
   "extends": [
     "eslint:recommended",
     "airbnb-base"
-  ]
+  ],
+  "globals": {
+    "isNaN": true
+  }
 }
