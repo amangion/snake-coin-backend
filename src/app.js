@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import index from './routes/index';
-import users from './routes/users';
+import transactions from './routes/transactions';
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/transactions', transactions);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

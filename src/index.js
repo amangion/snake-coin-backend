@@ -2,11 +2,12 @@ import 'babel-polyfill';
 import debugModule from 'debug';
 import http from 'http';
 import app from './app';
+import './mongoose';
 
-const debug = debugModule('snake-coin-backend:server');
+const debug = debugModule('snake-coin-backend:index');
 const server = http.createServer(app);
 
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '4000';
 app.set('port', port);
 
 /**
