@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-router.get('/', function(req, res, next) {
-  res.json([{"name": "John Joe"}]);
+const router = express.Router();
+
+router.get('/', (req, res, next) => {
+  res.json([{ name: 'John Joe' }]);
 });
 
 module.exports = router;
