@@ -4,16 +4,32 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
-
+import helmet from 'helmet';
+import compress from 'compression';
+import methodOverride from 'method-override';
+import cors from 'cors';
 import index from './routes/index';
 import transactions from './routes/transactions';
+import blocks from './routes/blocks';
+import config from './config';
 
 const app = express();
 
-app.use(logger('dev'));
+if (config.env === 'development') {
+  app.use(logger('dev'));
+}
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cookieParser());
+app.use(compress());
+app.use(methodOverride());
+
+// secure apps by setting various HTTP headers
+app.use(helmet());
+// enable CORS - Cross Origin Resource Sharing
+app.use(cors());
 
 const swaggerDocument = swaggerJSDoc({
   swaggerDefinition: {
@@ -32,6 +48,7 @@ const options = {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
 app.use('/', index);
+app.use('/api/blocks', blocks);
 app.use('/api/transactions', transactions);
 
 // catch 404 and forward to error handler
