@@ -15,6 +15,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
+    "chai": "^4.1.2",
     "compression": "^1.7.1",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
@@ -23,10 +24,12 @@
     "express": "~4.15.5",
     "express-swagger-generator": "^1.0.4",
     "helmet": "^3.11.0",
+    "http-status": "^1.0.1",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.5",
     "morgan": "~1.9.0",
     "sha256": "^0.2.0",
+    "supertest": "^3.0.0",
     "swagger-express": "^1.0.5",
     "swagger-jsdoc": "^1.9.7",
     "swagger-ui-express": "^2.0.15"
@@ -36,7 +39,6 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
     "babel-runtime": "^6.26.0",
-    "chai": "^4.1.2",
     "cross-env": "^5.1.3",
     "del": "^3.0.0",
     "eslint": "^4.9.0",
@@ -50,15 +52,11 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-util": "^3.0.8",
-    "http-status": "^1.0.1",
     "istanbul": "1.1.0-alpha.1",
     "mocha": "^5.0.1",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "run-sequence": "^2.2.1",
-    "supertest": "2.0.1",
-    "supertest-as-promised": "^4.0.2",
-    "supertest-promised": "^1.0.0"
+    "run-sequence": "^2.2.1"
   },
   "babel": {
     "presets": [
