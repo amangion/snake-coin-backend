@@ -12,6 +12,7 @@ class AuthController {
    * Returns jwt token if valid username and password is provided
    * @param req
    * @param res
+   * @param next
    * @returns {*}
    */
   async login(req, res, next) {
