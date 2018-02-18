@@ -4,6 +4,7 @@
     "describe": true,
     "it": true,
     "sinon": true,
-    "assert": true
+    "assert": true,
+    "chai": true
   }
 }

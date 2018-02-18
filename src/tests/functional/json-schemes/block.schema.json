@@ -1,0 +1,91 @@
+{
+  "$id": "http://example.com/block.json",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "index": {
+      "$id": "/properties/index",
+      "type": "integer",
+      "title": "The Index Schema",
+      "default": 0,
+      "examples": [
+        14
+      ]
+    },
+    "timestamp": {
+      "$id": "/properties/timestamp",
+      "type": "string",
+      "title": "The Timestamp Schema",
+      "default": "",
+      "examples": [
+        "2018-02-16T00:28:22.776Z"
+      ]
+    },
+    "transactions": {
+      "$id": "/properties/transactions",
+      "type": "array",
+      "uniqueItems": true,
+      "additionalItems": false,
+      "items": {
+        "$ref": "http://example.com/transaction.json"
+      }
+    },
+    "previousHash": {
+      "$id": "/properties/previousHash",
+      "type": "string",
+      "title": "The Previoushash Schema",
+      "default": "",
+      "examples": [
+        "41f447ea48d2231cc21c9ef96347d8848dccb3aa2e46e27683349042910a2dc2"
+      ]
+    },
+    "proofOfWork": {
+      "$id": "/properties/proofOfWork",
+      "type": "integer",
+      "title": "The Proofofwork Schema",
+      "default": 0,
+      "examples": [
+        73728
+      ]
+    },
+    "hash": {
+      "$id": "/properties/hash",
+      "type": "string",
+      "title": "The Hash Schema",
+      "default": "",
+      "examples": [
+        "41f447ea48d2231cc21c9ef96347d8848dccb3aa2e46e27683349042910a2dc2"
+      ]
+    },
+    "_id": {
+      "$id": "/properties/_id",
+      "type": "string",
+      "title": "The _id Schema",
+      "default": "",
+      "examples": [
+        "5a8625a6296fb5ce3ee37acd"
+      ]
+    },
+    "__v": {
+      "$id": "/properties/__v",
+      "type": "integer",
+      "title": "The __v Schema",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    }
+  },
+  "required": [
+    "index",
+    "timestamp",
+    "transactions",
+    "previousHash",
+    "proofOfWork",
+    "hash",
+    "_id",
+    "__v"
+  ]
+}

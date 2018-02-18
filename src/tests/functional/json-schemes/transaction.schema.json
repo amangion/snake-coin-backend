@@ -1,0 +1,71 @@
+{
+  "$id": "http://example.com/transaction.json",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "from": {
+      "$id": "/properties/from",
+      "type": "string",
+      "title": "The From Schema",
+      "default": "",
+      "examples": [
+        "Me"
+      ]
+    },
+    "to": {
+      "$id": "/properties/to",
+      "type": "string",
+      "title": "The To Schema",
+      "default": "",
+      "examples": [
+        "Friend"
+      ]
+    },
+    "amount": {
+      "$id": "/properties/amount",
+      "type": "integer",
+      "title": "The Amount Schema",
+      "default": 0,
+      "examples": [
+        5
+      ]
+    },
+    "createdAt": {
+      "$id": "/properties/createdAt",
+      "type": "string",
+      "title": "The Createdat Schema",
+      "default": "",
+      "examples": [
+        "2018-02-16T01:46:56.907Z"
+      ]
+    },
+    "_id": {
+      "$id": "/properties/_id",
+      "type": "string",
+      "title": "The _id Schema",
+      "default": "",
+      "examples": [
+        "5a86381001a796d29b583dd0"
+      ]
+    },
+    "__v": {
+      "$id": "/properties/__v",
+      "type": "integer",
+      "title": "The __v Schema",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    }
+  },
+  "required": [
+    "from",
+    "to",
+    "amount",
+    "createdAt",
+    "_id",
+    "__v"
+  ]
+}

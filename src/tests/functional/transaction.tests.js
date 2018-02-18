@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 import request from 'supertest';
 import httpStatus from 'http-status';
-import chai, { expect } from 'chai';
 import app from '../../index';
+import transactionSchema from './json-schemes/transaction.schema.json';
+import transactionListSchema from './json-schemes/transaction-list.schema.json';
 
 chai.config.includeStack = true;
 
@@ -31,9 +32,7 @@ describe('## transactions APIs', () => {
         .send(transaction)
         .expect(httpStatus.OK);
 
-      expect(res.body.from).to.equal(transaction.from);
-      expect(res.body.to).to.equal(transaction.to);
-      expect(res.body.amount).to.equal(transaction.amount);
+      assert.jsonSchema(res.body, transactionSchema);
     });
   });
 
@@ -43,7 +42,8 @@ describe('## transactions APIs', () => {
         .get('/api/transactions')
         .expect(httpStatus.OK);
 
-      expect(res.body).to.be.an('array');
+      chai.tv4.addSchema('http://example.com/transaction.json', transactionSchema);
+      assert.jsonSchema(res.body, transactionListSchema);
     });
   });
 });
