@@ -5,7 +5,7 @@
   "scripts": {
     "start": "gulp serve",
     "lint": "esw *.js src --color",
-    "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --ui bdd --timeout 5000 --reporter spec --colors --require babel-polyfill --require babel-core/register src/tests --recursive",
+    "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --ui bdd --timeout 5000 --reporter spec --colors --require babel-polyfill --require babel-core/register --require src/tests/bootstrap.unit.js src/tests --recursive",
     "test:watch": "yarn test --watch",
     "test:coverage": "cross-env NODE_ENV=test ./node_modules/.bin/istanbul cover _mocha -- --ui bdd --reporter spec --colors --require babel-polyfill --require babel-core/register src/tests --recursive",
     "test:check-coverage": "yarn test:coverage && istanbul check-coverage"
@@ -29,6 +29,7 @@
     "mongoose": "^5.0.5",
     "morgan": "~1.9.0",
     "sha256": "^0.2.0",
+    "sinon": "^4.3.0",
     "supertest": "^3.0.0",
     "swagger-express": "^1.0.5",
     "swagger-jsdoc": "^1.9.7",
