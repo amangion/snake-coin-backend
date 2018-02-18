@@ -1,5 +1,6 @@
 import express from 'express';
 import logger from 'morgan';
+import httpStatus from 'http-status';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
@@ -8,10 +9,10 @@ import helmet from 'helmet';
 import compress from 'compression';
 import methodOverride from 'method-override';
 import cors from 'cors';
+import expressValidation from 'express-validation';
 import index from './routes/index';
-import transactions from './routes/transactions';
-import blocks from './routes/blocks';
 import config from './config';
+import APIError from './exceptions/APIError';
 
 const app = express();
 
@@ -46,27 +47,31 @@ const options = {
 };
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-
 app.use('/', index);
-app.use('/api/blocks', blocks);
-app.use('/api/transactions', transactions);
+
+app.use((err, req, res, next) => {
+  if (err instanceof expressValidation.ValidationError) {
+    const unifiedErrorMessage = err.errors.map(error => error.messages.join('. ')).join(' and ');
+    const error = new APIError(unifiedErrorMessage, err.status, true);
+    return next(error);
+  } else if (!(err instanceof APIError)) {
+    const apiError = new APIError(err.message, err.status, err.isPublic);
+    return next(apiError);
+  }
+  return next(err);
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  const err = new APIError('API not found', httpStatus.NOT_FOUND);
+  return next(err);
 });
 
-// error handler
-app.use((err, req, res) => {
-  const response = { error: err.message };
-  if (req.app.get('env') === 'development') {
-    response.details = err;
-  }
-  // render the error page
-  res.status(err.status || 500);
-  res.json(response);
-});
+// error handler, send stacktrace only during development
+app.use((err, req, res, next) => // eslint-disable-line no-unused-vars
+  res.status(err.status).json({
+    message: err.isPublic ? err.message : httpStatus[err.status],
+    stack: config.env === 'development' ? err.stack : {},
+  }));
 
 export default app;
