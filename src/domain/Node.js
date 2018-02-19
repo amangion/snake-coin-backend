@@ -1,5 +1,5 @@
 import blockModelInstance from '../models/Block.model';
-import transactionModelInstance from '../models/transaction.model';
+import transactionModelInstance from '../models/Transaction.model';
 import blockFactoryInstance from './BlockFactory';
 
 export const MINER_ADDRESS = 'q3nf394hjg-random-miner-address-34nf3i4nflkn3oi';

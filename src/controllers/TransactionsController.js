@@ -1,6 +1,7 @@
-import Transaction from '../models/transaction.model';
+import Transaction from '../models/Transaction.model';
 import transactionRetriever from '../services/TransactionRetriever';
 import balanceService from '../services/BalanceService';
+import NodeServer from '../domain/Node';
 
 /**
  * @swagger
@@ -46,6 +47,8 @@ class TransactionsController {
       to: req.body.to,
       amount: req.body.amount,
     });
+
+    await NodeServer.mine();
 
     return res.json(transaction);
   }

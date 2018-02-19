@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { TransactionSchema } from './transaction.model';
+import { TransactionSchema } from './Transaction.model';
 
 const BlockSchema = new mongoose.Schema({
   index: {

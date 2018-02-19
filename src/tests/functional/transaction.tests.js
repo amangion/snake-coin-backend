@@ -19,9 +19,7 @@ after((done) => {
   done();
 });
 
-
-const AUTH_HEADR = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtYW5nZSIsImlhdCI6MTUxODk5MjQyMX0.pB2m_hfKCqFO5mg6PWNF7vbxWDfn0oXNmurF6kTxZ84';
-
+const AUTH_HEADR = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE1MTkwMTEwMzB9.CP-y7-UCtRg2zk2sXJeE2wUPTvYhf85TrTzeaS3k0Ls';
 
 describe('## transactions APIs', () => {
   describe('# POST /api/transactions', () => {

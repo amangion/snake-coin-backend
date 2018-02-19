@@ -2,9 +2,10 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import httpStatus from 'http-status';
 import userModel from '../models/User.model';
-import transactionModel from '../models/transaction.model';
+import transactionModel from '../models/Transaction.model';
 import config from '../config';
 import APIError from '../exceptions/APIError';
+import NodeServer from '../domain/Node';
 
 export const SALT_ROUND_GEN = 10;
 
@@ -26,11 +27,13 @@ class AuthController {
         password: hash,
       });
 
-      transactionModel.create({
+      await transactionModel.create({
         from: 'network',
         to: req.body.username,
         amount: 10,
       });
+
+      await NodeServer.mine();
 
       return this.responseWIthJwt(user, res);
     }

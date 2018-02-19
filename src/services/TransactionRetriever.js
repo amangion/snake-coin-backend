@@ -1,5 +1,5 @@
 import blockModelInstance from '../models/Block.model';
-import transactionModelInstance from '../models/transaction.model';
+import transactionModelInstance from '../models/Transaction.model';
 
 class TransactionRetriever {
   constructor(blockModel, transactionModel) {
