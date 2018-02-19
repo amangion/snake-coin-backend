@@ -4,6 +4,7 @@ services:
   snake-coin:
     build:
       context: .
+    image: "amangion/snake-coin-backend:latest"
     volumes:
       - .:/app
       - /app/node_modules/
