@@ -1,6 +1,6 @@
 import Block from '../models/Block.model';
 import NodeServer from '../domain/Node';
-import Transaction from '../models/transaction.model';
+import balanceService from '../services/BalanceService';
 
 class BlocksController {
   /**
@@ -22,33 +22,8 @@ class BlocksController {
    */
   async getBalance(req, res) {
     const { username } = req.user;
-    const blocks = await Block.find({
-      $or: [
-        { 'transactions.from': { $eq: username } },
-        { 'transactions.to': { $eq: username } },
-      ],
-    })
-      .exec();
 
-    let total = blocks.reduce((totalAcc, block) => {
-      const blockValue = block.transactions.reduce((blockAcc, transaction) => {
-        if (transaction.to === username) {
-          return blockAcc + transaction.amount;
-        }
-        if (transaction.from === username) {
-          return blockAcc - transaction.amount;
-        }
-        return blockAcc;
-      }, 0);
-
-      return totalAcc + blockValue;
-    }, 0);
-
-
-    const transactions = await Transaction.find({ from: username }).exec();
-    total = transactions.reduce((totalAcc, curr) => totalAcc - curr.amount, total);
-
-    return res.json({ balance: total });
+    return res.json({ balance: await balanceService.getCurrentBalanceForUser(username) });
   }
   /**
      * Mine new block

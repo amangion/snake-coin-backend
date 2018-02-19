@@ -22,7 +22,8 @@ describe('## blocks APIs', () => {
   describe('# GET /api/blocks/mine', () => {
     it('should mine a new block', async () => {
       const res = await request(app)
-        .get('/api/blocks/mine')
+        .post('/api/blocks/mine')
+        .send()
         .expect(httpStatus.OK);
 
       chai.tv4.addSchema('http://example.com/transaction.json', transactionSchema);

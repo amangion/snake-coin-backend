@@ -2,7 +2,6 @@ import express from 'express';
 import transactions from './transactions';
 import blocks from './blocks';
 import auth from './auth';
-import users from './users';
 
 const router = express.Router();
 
@@ -13,6 +12,5 @@ router.get('/', (req, res) => {
 router.use('/api/blocks', blocks);
 router.use('/api/transactions', transactions);
 router.use('/api/auth', auth);
-router.use('/api/users', users);
 
 export default router;

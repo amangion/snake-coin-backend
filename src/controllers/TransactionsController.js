@@ -1,5 +1,5 @@
 import Transaction from '../models/transaction.model';
-
+import transactionRetriever from '../services/TransactionRetriever';
 /**
  * @swagger
  * tags:
@@ -95,16 +95,10 @@ class TransactionsController {
      *           items:
      *             $ref: '#/definitions/Transaction'
      */
-  async list(req, res) {
-    const { limit = 15, skip = 0 } = req.query;
+  async getTransactionsList(req, res) {
     const { username } = req.user;
-    const transactions = await Transaction.find({ $or: [{ from: username }, { to: username }] })
-      .sort({ createdAt: -1 })
-      .skip(+skip)
-      .limit(+limit)
-      .exec();
 
-    return res.json(transactions);
+    res.json(await transactionRetriever.getTransactionsForUser(username));
   }
 }
 
