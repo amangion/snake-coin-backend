@@ -1,6 +1,5 @@
 import Block from '../models/Block.model';
 import NodeServer from '../domain/Node';
-import balanceService from '../services/BalanceService';
 
 class BlocksController {
   /**
@@ -16,15 +15,6 @@ class BlocksController {
     return res.json(blocks);
   }
 
-  /**
-   * Get user balance.
-   * @returns {Object}
-   */
-  async getBalance(req, res) {
-    const { username } = req.user;
-
-    return res.json({ balance: await balanceService.getCurrentBalanceForUser(username) });
-  }
   /**
      * Mine new block
      * @returns {Block}

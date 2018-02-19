@@ -8,5 +8,6 @@ const router = express.Router();
 
 router.get('/', expressJwt({ secret: config.jwtSecret }), asyncMiddleware(transactionsController.getTransactionsList));
 router.post('/', expressJwt({ secret: config.jwtSecret }), asyncMiddleware(transactionsController.create));
+router.post('/balance', expressJwt({ secret: config.jwtSecret }), asyncMiddleware(transactionsController.getBalance));
 
 export default router;

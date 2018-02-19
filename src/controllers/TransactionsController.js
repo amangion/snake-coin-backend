@@ -1,5 +1,7 @@
 import Transaction from '../models/transaction.model';
 import transactionRetriever from '../services/TransactionRetriever';
+import balanceService from '../services/BalanceService';
+
 /**
  * @swagger
  * tags:
@@ -99,6 +101,16 @@ class TransactionsController {
     const { username } = req.user;
 
     res.json(await transactionRetriever.getTransactionsForUser(username));
+  }
+
+  /**
+   * Get user balance.
+   * @returns {Object}
+   */
+  async getBalance(req, res) {
+    const { username } = req.user;
+
+    return res.json({ balance: await balanceService.getCurrentBalanceForUser(username) });
   }
 }
 
