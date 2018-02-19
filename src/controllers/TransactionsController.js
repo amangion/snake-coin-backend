@@ -39,14 +39,13 @@ class TransactionsController {
    *           $ref: '#/definitions/Transaction'
    */
   async create(req, res) {
-    const transaction = new Transaction({
-      from: req.body.from,
+    const transaction = await Transaction.create({
+      from: req.body.from || req.user.username,
       to: req.body.to,
       amount: req.body.amount,
     });
 
-    const savedTransaction = await transaction.save();
-    return res.json(savedTransaction);
+    return res.json(transaction);
   }
 
   /**
@@ -98,7 +97,12 @@ class TransactionsController {
      */
   async list(req, res) {
     const { limit = 15, skip = 0 } = req.query;
-    const transactions = await Transaction.list({ limit, skip });
+    const { username } = req.user;
+    const transactions = await Transaction.find({ $or: [{ from: username }, { to: username }] })
+      .sort({ createdAt: -1 })
+      .skip(+skip)
+      .limit(+limit)
+      .exec();
 
     return res.json(transactions);
   }

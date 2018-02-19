@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import httpStatus from 'http-status';
 import userModel from '../models/User.model';
+import transactionModel from '../models/transaction.model';
 import config from '../config';
 import APIError from '../exceptions/APIError';
 
@@ -23,6 +24,12 @@ class AuthController {
       user = await userModel.create({
         name: req.body.username,
         password: hash,
+      });
+
+      transactionModel.create({
+        from: 'network',
+        to: req.body.username,
+        amount: 10,
       });
 
       return this.responseWIthJwt(user, res);
